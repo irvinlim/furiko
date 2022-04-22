@@ -14,25 +14,22 @@
  * limitations under the License.
  */
 
-package strings
+package main
 
-// ContainsString returns true if the string s is contained in the slice of
-// strings strs.
-func ContainsString(strs []string, s string) bool {
-	for _, str := range strs {
-		if str == s {
-			return true
-		}
-	}
-	return false
-}
+import (
+	"fmt"
+	"os"
 
-// IndexOf returns the index of s in strs.
-func IndexOf(strs []string, s string) (int, bool) {
-	for i, str := range strs {
-		if str == s {
-			return i, true
-		}
+	ctrl "sigs.k8s.io/controller-runtime"
+
+	"github.com/furiko-io/furiko/pkg/furictl/cmd"
+)
+
+func main() {
+	ctx := ctrl.SetupSignalHandler()
+	err := cmd.NewRootCommand(ctx).Execute()
+	if err != nil {
+		fmt.Printf("%v\n", err)
+		os.Exit(1)
 	}
-	return -1, false
 }

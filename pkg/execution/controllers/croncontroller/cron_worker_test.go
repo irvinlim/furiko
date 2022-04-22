@@ -35,6 +35,7 @@ import (
 	execution "github.com/furiko-io/furiko/apis/execution/v1alpha1"
 	"github.com/furiko-io/furiko/pkg/execution/controllers/croncontroller"
 	"github.com/furiko-io/furiko/pkg/runtime/controllercontext/mock"
+	"github.com/furiko-io/furiko/pkg/utils/logging"
 	"github.com/furiko-io/furiko/pkg/utils/testutils"
 )
 
@@ -357,7 +358,7 @@ func TestCronWorker(t *testing.T) { // nolint:gocognit
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			testutils.SetLogLevel(tt.log)
+			logging.SetLogLevel(tt.log)
 
 			ctx, cancel := context.WithCancel(context.Background())
 			defer cancel()

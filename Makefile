@@ -96,7 +96,11 @@ test: ## Run tests with coverage. Outputs to combined.cov.
 ##@ Building
 
 .PHONY: build
-build: build-execution-controller build-execution-webhook ## Build all Go binaries.
+build: build-furictl build-execution-controller build-execution-webhook ## Build all Go binaries.
+
+.PHONY: build-furictl
+build-furictl: ## Build furictl.
+	go build -o build/furictl ./cmd/furictl
 
 .PHONY: build-execution-controller
 build-execution-controller: ## Build execution-controller.
